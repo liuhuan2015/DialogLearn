@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.liuh.dialoglearn.MainActivity">
+
+    <Button
+        android:id="@+id/btn_normal_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="普通AlertDialog" />
+
+    <Button
+        android:id="@+id/btn_list_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="列表AlertDialog" />
+
+    <Button
+        android:id="@+id/btn_singlechoose_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="单选AlertDialog" />
+
+    <Button
+        android:id="@+id/btn_multichoose_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="多选AlertDialog" />
+
+    <Button
+        android:id="@+id/btn_wait_progressdialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="等待的界面(ProgressDialog)" />
+
+    <Button
+        android:id="@+id/btn_progress_progressdialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进度的界面(ProgressDialog)" />
+
+    <Button
+        android:id="@+id/btn_editable_alertdialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="可编辑的AlertDialog" />
+
+    <Button
+        android:id="@+id/btn_custom_alertdialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义布局的AlertDialog" />
+
+    <Button
+        android:id="@+id/btn_override_method_alertdialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="重写某些函数的AlertDialog" />
+
+</LinearLayout>
