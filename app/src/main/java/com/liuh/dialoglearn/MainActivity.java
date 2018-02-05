@@ -16,7 +16,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CustomDialogFragment.ResultCallback {
     int yourChoice = -1;
     List<String> yourChoose = new ArrayList<String>();
 
@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.btn_normal_dialog, R.id.btn_list_dialog, R.id.btn_singlechoose_dialog, R.id.btn_multichoose_dialog,
             R.id.btn_wait_progressdialog, R.id.btn_progress_progressdialog, R.id.btn_editable_alertdialog,
-            R.id.btn_custom_alertdialog, R.id.btn_override_method_alertdialog})
+            R.id.btn_custom_alertdialog, R.id.btn_override_method_alertdialog, R.id.btn_DialogFragment_alertdialog,
+            R.id.btn_DialogFragment_encapsulation_alertdialog, R.id.btn_listDialogFragment_encapsulation_alertdialog,
+            R.id.btn_customDialogFragment_encapsulation_alertdialog})
     void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_normal_dialog:
@@ -69,7 +71,22 @@ public class MainActivity extends AppCompatActivity {
                 //重写部分方法的AlertDialog
                 showOverrideMethodAlertDialog();
                 break;
-
+            case R.id.btn_DialogFragment_alertdialog:
+                //使用DialogFragment形式的AlertDialog
+                showDialogFragmentAlertDialog();
+                break;
+            case R.id.btn_DialogFragment_encapsulation_alertdialog:
+                //封装DialogFragment形式的AlertDialog
+                showEncapsulationDialogFragment();
+                break;
+            case R.id.btn_listDialogFragment_encapsulation_alertdialog:
+                //列表形式的(封装DialogFragment形式的AlertDialog)
+                showListDialogFragment();
+                break;
+            case R.id.btn_customDialogFragment_encapsulation_alertdialog:
+                //自定义布局形式的(封装DialogFragment形式的AlertDialog)
+                showCustomDialogFragment();
+                break;
         }
     }
 
@@ -304,4 +321,50 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+    private void showDialogFragmentAlertDialog() {
+        MyDialogFragment myDialogFragment = new MyDialogFragment();
+        myDialogFragment.show(getFragmentManager(), "MyDialogFragment");
+    }
+
+    private void showEncapsulationDialogFragment() {
+        ButtonDialogFragment buttonDialogFragment = new ButtonDialogFragment();
+        buttonDialogFragment.show("Hi,nihao", "我是硕风和叶,我是铁沁,我是大地之王", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "确定按钮被点击了", Toast.LENGTH_SHORT).show();
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "取消按钮被点击了", Toast.LENGTH_SHORT).show();
+            }
+        }, getFragmentManager());
+    }
+
+    private void showListDialogFragment() {
+        ListDialogFragment listDialogFragment = new ListDialogFragment();
+        final String[] items = new String[]{"我是牧云笙", "我是穆如寒江", "我是硕风和叶", "我是大反派"};
+        listDialogFragment.show("Hi,nihao", items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                    }
+                }, getFragmentManager());
+    }
+
+    private void showCustomDialogFragment() {
+        CustomDialogFragment customDialogFragment = new CustomDialogFragment();
+        customDialogFragment.show(this, getFragmentManager());
+    }
+
+    @Override
+    public void getResult(String name, String password) {
+        Toast.makeText(this, "用户名:" + name + "密码:" + password, Toast.LENGTH_SHORT).show();
+    }
 }
