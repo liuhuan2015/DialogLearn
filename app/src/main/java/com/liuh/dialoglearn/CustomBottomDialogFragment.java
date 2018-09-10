@@ -33,33 +33,16 @@ public class CustomBottomDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = View.inflate(getActivity(), R.layout.layout_custom_dialogfragment, null);
-        final EditText etName = view.findViewById(R.id.et_name);
-        final EditText etPassword = view.findViewById(R.id.et_password);
+        View view = View.inflate(getActivity(), R.layout.layout_bottom_dialog, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.windowAnimationStyle);
-        builder.setView(view)
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name = etName.getText().toString().trim();
-                        String password = etPassword.getText().toString().trim();
-                        if (resultCallback != null) {
-                            resultCallback.getResult(name, password);
-                        }
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+        builder.setView(view);
 
         AlertDialog alertDialog = builder.create();
 
         Window window = alertDialog.getWindow();
         WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
         wlp.gravity = Gravity.BOTTOM;
         window.setAttributes(wlp);

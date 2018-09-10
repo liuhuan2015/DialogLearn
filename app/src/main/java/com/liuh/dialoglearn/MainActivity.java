@@ -218,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
         multiChooseDialog.show();
     }
 
-
     private void showWaitProgressDialog() {
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
 //        progressDialog.setTitle("我是一个等待Dialog");
@@ -287,7 +286,6 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
 
                 EditText et = dialogView.findViewById(R.id.et_input);
                 Toast.makeText(MainActivity.this, et.getText().toString().trim(), Toast.LENGTH_SHORT).show();
-
             }
         });
         customDialog.show();
