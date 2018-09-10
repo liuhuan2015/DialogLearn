@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements CustomDialogFragment.ResultCallback {
+public class MainActivity extends AppCompatActivity implements CustomDialogFragment.ResultCallback, CustomBottomDialogFragment.ResultCallback {
     int yourChoice = -1;
     List<String> yourChoose = new ArrayList<String>();
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
             R.id.btn_wait_progressdialog, R.id.btn_progress_progressdialog, R.id.btn_editable_alertdialog,
             R.id.btn_custom_alertdialog, R.id.btn_override_method_alertdialog, R.id.btn_DialogFragment_alertdialog,
             R.id.btn_DialogFragment_encapsulation_alertdialog, R.id.btn_listDialogFragment_encapsulation_alertdialog,
-            R.id.btn_customDialogFragment_encapsulation_alertdialog})
+            R.id.btn_customDialogFragment_encapsulation_alertdialog, R.id.btn_customDialogFragment_bottomdialog})
     void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_normal_dialog:
@@ -86,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
             case R.id.btn_customDialogFragment_encapsulation_alertdialog:
                 //自定义布局形式的(封装DialogFragment形式的AlertDialog)
                 showCustomDialogFragment();
+                break;
+            case R.id.btn_customDialogFragment_bottomdialog:
+                //DialogFragment 底部弹窗
+                showCustomBottomDialogFragment();
                 break;
         }
     }
@@ -361,6 +366,14 @@ public class MainActivity extends AppCompatActivity implements CustomDialogFragm
     private void showCustomDialogFragment() {
         CustomDialogFragment customDialogFragment = new CustomDialogFragment();
         customDialogFragment.show(this, getFragmentManager());
+    }
+
+    /**
+     * 底部弹窗
+     */
+    private void showCustomBottomDialogFragment() {
+        CustomBottomDialogFragment bottomDialogFragment = new CustomBottomDialogFragment();
+        bottomDialogFragment.show(this, getFragmentManager());
     }
 
     @Override

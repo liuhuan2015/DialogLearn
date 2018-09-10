@@ -88,5 +88,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="自定义布局形式的(封装DialogFragment形式的AlertDialog)" />
+
+        <Button
+            android:id="@+id/btn_customDialogFragment_bottomdialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自定义布局形式的(使用DialogFragment实现的底部弹窗)" />
     </LinearLayout>
 </ScrollView>
